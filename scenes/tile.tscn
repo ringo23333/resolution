@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://wgb1m175468a"]
+
+[ext_resource type="Script" path="res://scenes/tile.gd" id="1_pvxr1"]
+[ext_resource type="Texture2D" uid="uid://cjwxqlqutjtpx" path="res://board/boardtileset.png" id="2_vx0xa"]
+[ext_resource type="Texture2D" uid="uid://35ameuc56pcw" path="res://board/validmove.png" id="3_tjhtr"]
+[ext_resource type="Texture2D" uid="uid://cucvqcmxtpj15" path="res://board/invalidmove.png" id="4_1yy3j"]
+[ext_resource type="Texture2D" uid="uid://2s7dy0fqqdla" path="res://board/capture.png" id="5_cvkww"]
+[ext_resource type="Texture2D" uid="uid://d0rjpjofvraur" path="res://board/enemymove.png" id="6_5i5ag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp08q"]
+atlas = ExtResource("5_cvkww")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ligpt"]
+atlas = ExtResource("5_cvkww")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doalu"]
+atlas = ExtResource("5_cvkww")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hreyk"]
+atlas = ExtResource("5_cvkww")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psdul"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp08q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ligpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doalu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hreyk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="tile" type="Node2D"]
+script = ExtResource("1_pvxr1")
+
+[node name="base" type="Sprite2D" parent="."]
+texture = ExtResource("2_vx0xa")
+hframes = 2
+
+[node name="validMove" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_tjhtr")
+
+[node name="invalidMove" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_1yy3j")
+
+[node name="capture" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_psdul")
+autoplay = "default"
+
+[node name="enemyMove" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("6_5i5ag")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxvm7xnw2xikh"]
+
+[ext_resource type="Script" path="res://pieces/physics_piece.gd" id="1_aq33n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2gp85"]
+friction = 0.0
+bounce = 100.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fd64"]
+size = Vector2(10, 10)
+
+[node name="physicsPiece" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_2gp85")
+gravity_scale = 0.0
+script = ExtResource("1_aq33n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.2, 3.2)
+shape = SubResource("RectangleShape2D_3fd64")
