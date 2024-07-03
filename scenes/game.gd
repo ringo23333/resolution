@@ -220,18 +220,19 @@ func disableAll():
 func pieceMouseEntered(x, y):
 	if (not movingPiece): # and boardArray[x][y].piece.team == turn):
 		disableAll()
-		validLocked = true
-		await get_tree().create_timer(0.001).timeout
 		if (boardArray[x][y].piece.canMoveStraight):
 			enableStraights(x, y)
 		if (boardArray[x][y].piece.canMoveDiagonal):
 			enableDiagonals(x, y)
 		enableMisc(x, y)
-		validLocked = false
 
 func pieceMouseExited(x, y):
 	if (not movingPiece):
-		if (not validLocked):
+		var mouseTileCoords = mouseCoords()
+		if (mouseTileCoords.x < 0 or mouseTileCoords.x > 7 or mouseTileCoords.y < 0 or mouseTileCoords.y > 7):
+			disableAll()
+			return
+		if (boardArray[mouseTileCoords.x][mouseTileCoords.y].piece) == emptyPiece:
 			disableAll()
 
 func _process(delta):
